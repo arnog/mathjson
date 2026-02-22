@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mathjson.io/schemas/categories.schema.json",
+  "title": "MathJSON Categories",
+  "description": "Schema for MathJSON categories.json mapping category names to their operators and constants.",
+  "type": "object",
+  "additionalProperties": {
+    "$ref": "#/$defs/Category"
+  },
+  "$defs": {
+    "Category": {
+      "type": "object",
+      "description": "A MathJSON category definition.",
+      "required": ["description", "operators", "constants"],
+      "additionalProperties": false,
+      "properties": {
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Human-readable description of the category."
+        },
+        "operators": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": "Operator names belonging to this category."
+        },
+        "constants": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": "Constant names belonging to this category."
+        }
+      }
+    }
+  }
+}

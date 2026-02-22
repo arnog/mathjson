@@ -1,0 +1,140 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mathjson.io/schemas/dictionary.schema.json",
+  "title": "MathJSON Dictionary",
+  "description": "Schema for MathJSON dictionary.json containing operators and constants.",
+  "type": "object",
+  "required": ["operators", "constants"],
+  "additionalProperties": false,
+  "properties": {
+    "operators": {
+      "type": "array",
+      "description": "Array of operator definitions.",
+      "items": {
+        "$ref": "#/$defs/Operator"
+      }
+    },
+    "constants": {
+      "type": "array",
+      "description": "Array of constant definitions.",
+      "items": {
+        "$ref": "#/$defs/Constant"
+      }
+    }
+  },
+  "$defs": {
+    "Operator": {
+      "type": "object",
+      "description": "A MathJSON operator definition.",
+      "required": [
+        "name",
+        "category",
+        "arity",
+        "signature",
+        "associative",
+        "commutative",
+        "idempotent",
+        "lazy",
+        "broadcastable"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Unique operator name in PascalCase."
+        },
+        "category": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Category this operator belongs to."
+        },
+        "arity": {
+          "type": "string",
+          "enum": ["0", "1", "2", "3", "optional", "unknown", "variadic"],
+          "description": "Number of arguments the operator accepts."
+        },
+        "signature": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Type signature of the operator."
+        },
+        "associative": {
+          "type": "boolean",
+          "description": "Whether the operator is associative."
+        },
+        "commutative": {
+          "type": "boolean",
+          "description": "Whether the operator is commutative."
+        },
+        "idempotent": {
+          "type": "boolean",
+          "description": "Whether the operator is idempotent."
+        },
+        "lazy": {
+          "type": "boolean",
+          "description": "Whether the operator uses lazy evaluation."
+        },
+        "broadcastable": {
+          "type": "boolean",
+          "description": "Whether the operator supports broadcasting."
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Human-readable description of the operator."
+        },
+        "wikidata": {
+          "type": "string",
+          "pattern": "^Q[0-9]+$",
+          "description": "Wikidata entity ID (e.g., Q3317982)."
+        },
+        "examples": {
+          "type": "array",
+          "description": "Example expressions using this operator."
+        }
+      }
+    },
+    "Constant": {
+      "type": "object",
+      "description": "A MathJSON constant definition.",
+      "required": [
+        "name",
+        "category",
+        "type"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Unique constant name in PascalCase."
+        },
+        "category": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Category this constant belongs to."
+        },
+        "type": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Type descriptor for the constant."
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Human-readable description of the constant."
+        },
+        "wikidata": {
+          "type": "string",
+          "pattern": "^Q[0-9]+$",
+          "description": "Wikidata entity ID."
+        },
+        "value": {
+          "type": "string",
+          "description": "String representation of the constant value."
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,35 @@
+name: Validate JSON Schemas
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    name: JSON Schema Validation
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Install check-jsonschema
+        run: pip install check-jsonschema
+
+      - name: Validate schemas are valid JSON Schema
+        run: |
+          check-jsonschema --check-metaschema schemas/dictionary.schema.json
+          check-jsonschema --check-metaschema schemas/categories.schema.json
+
+      - name: Validate dictionary.json
+        run: check-jsonschema --schemafile schemas/dictionary.schema.json dictionary.json -v
+
+      - name: Validate categories.json
+        run: check-jsonschema --schemafile schemas/categories.schema.json categories.json -v
