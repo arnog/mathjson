@@ -1,0 +1,16 @@
+*
+
+!README.md
+!categories.json
+!dictionary.json
+!package.json
+
+!schemas/
+!schemas/*.json
+
+!.github/
+!.github/workflows/
+!.github/workflows/*.yml
+
+!docs/
+!docs/*.md

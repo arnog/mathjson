@@ -1,0 +1,11 @@
+{
+  "name": "mathjson",
+  "version": "0.1.0",
+  "description": "MathJSON reference dictionaries — a lightweight data interchange format for mathematical notation.",
+  "homepage": "http://mathjson.io",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/arnog/mathjson.git"
+  },
+  "license": "MIT"
+}
